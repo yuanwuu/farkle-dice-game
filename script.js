@@ -31,7 +31,7 @@
 // < --------------- arrays ----------------- >
 
 const diceNum =[1,2,3,4,5,6]
-const hDArr = []
+const hDArr = [] // to be added
 
 const typeOfKind = [
     [1,1,1,1],[1,1,1,1,1],[1,1,1,1,1,1],
@@ -44,27 +44,52 @@ const typeOfKind = [
 
 const score = [1,5]
 const playerScore = []
-
+const farkleDice = [3,4,6]
 
 
 
 // < --------------- funtions ----------------- >
 
 const rollBtn = document.querySelector('.roll')
-// const output = document.querySelector('.table')
+const output = document.querySelector('.table')
+const bankBtn = document.querySelector('.bank')
+const pScore = document.querySelector('.player-score')
+
+const ranDice = (Math.floor(Math.random() * 6) + 1)
 
 rollBtn.addEventListener('click',diceRoll)
+ 
 function diceRoll () {
-    const ranNum = (Math.floor(Math.random() * 6) + 1)
-    console.log(ranNum)
+    for (let i=0;i < 5; i++){ // 5 dices were rolled and printed
+        const ranNum = (Math.floor(Math.random() * 6) + 1)
+        const val = 9855 + ranNum
+        output.innerHTML += `<span value="${ranNum}">&#${val}</span>`; // value="${ranNum}" is calling the fn ranNum to compare it agian the ${val}.
+
+        if (ranNum.value === farkleDice){
+            console.log(`Farkle`)
+        }
+    }
+
+    
 }
 
-const bankBtn = document.querySelector('.bank')
+
 bankBtn.addEventListener('click', bankScore)
 function bankScore () { // score need to be adde to score board
-    console.log('score added')
+    let sum = 0;
+    if (ranNum === 1){
+        pScore.textContent = sum + 100;
+    }
+    
 }
 
+// const newTurn = document.getElementById('.new-game')
+// newTurn.addEventListener('click',newGame)
+// function newGame() {
+//     score = 0;
+//     numTurns = 0;
+//     totalScore = 0;
+// }
 
 // const farkle = () => { // lose function, this round of score will go back to 0
 //     console.log(`FARKLE!`)
