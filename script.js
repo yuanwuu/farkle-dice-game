@@ -22,41 +22,70 @@
 
 // < --------------- player ----------------- >
 
+// let player = window('Please enter your name to begin')
+// if (player === true){
+//     console.log(`please roll dice to start`)
+// } 
 
 
+// < --------------- arrays ----------------- >
+
+const diceNum =[1,2,3,4,5,6]
+const hDArr = []
+
+const typeOfKind = [
+    [1,1,1,1],[1,1,1,1,1],[1,1,1,1,1,1],
+    [2,2,2,2],[2,2,2,2,2],[2,2,2,2,2,2],
+    [3,3,3,3],[3,3,3,3,3],[3,3,3,3,3,3],
+    [4,4,4,4],[4,4,4,4,4],[4,4,4,4,4,4],
+    [5,5,5,5],[5,5,5,5,5],[5,5,5,5,5,5],
+    [6,6,6,6],[6,6,6,6,6],[6,6,6,6,6,6],
+]
+
+const score = [1,5]
+const playerScore = []
 
 
 
 
 // < --------------- funtions ----------------- >
-const score = {
-    ones: 100,
-    fives: 50,
-    'triple one': 1000,
-    'triple two': 200,
+
+const rollBtn = document.querySelector('.roll')
+// const output = document.querySelector('.table')
+
+rollBtn.addEventListener('click',diceRoll)
+function diceRoll () {
+    const ranNum = (Math.floor(Math.random() * 6) + 1)
+    console.log(ranNum)
 }
 
-const diceArr =[1,2,3,4,5,6]
-
-
-
-farkle = () => { // lose function, score go back to 0
-    return 0;
+const bankBtn = document.querySelector('.bank')
+bankBtn.addEventListener('click', bankScore)
+function bankScore () { // score need to be adde to score board
+    console.log('score added')
 }
 
-hotDice = () => { // winning hand, hotDice can roll another turn
-    if (diceRoll) {
-        console.log(`roll again`)
-    } else {
-        bankScore
-    }
-}
 
-bankScore = () => {
-    score += ;
-}
+// const farkle = () => { // lose function, this round of score will go back to 0
+//     console.log(`FARKLE!`)
+// }
+
+// let hotDice = () => { // winning hand, hotDice can roll another turn
+//     if (diceRoll) {
+//         console.log(`roll again or bank score`)
+//     } 
+// }
+
+// bankScore = (score) => {
+//     if (diceRoll === score) {
+//         console.log(`Roll Dice or Bank Score`)
+//     } else {
+//         return farkle
+//     }
+// }
+
+
 
 
 // < --------------- functioning ----------------- >
-const diceNum = (Math.floor(Math.random() * 6) + 1) // generate random # from 1 to 6
 
