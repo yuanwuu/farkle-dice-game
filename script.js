@@ -30,22 +30,19 @@
 
 // < --------------- arrays ----------------- >
 
-const diceNum =[1,2,3,4,5,6]
-const hDArr = [] // to be added
-
+const rolls = [] 
+const doubles = 0 
 const typeOfKind = [
-    [1,1,1,1],[1,1,1,1,1],[1,1,1,1,1,1],
-    [2,2,2,2],[2,2,2,2,2],[2,2,2,2,2,2],
-    [3,3,3,3],[3,3,3,3,3],[3,3,3,3,3,3],
-    [4,4,4,4],[4,4,4,4,4],[4,4,4,4,4,4],
-    [5,5,5,5],[5,5,5,5,5],[5,5,5,5,5,5],
-    [6,6,6,6],[6,6,6,6,6],[6,6,6,6,6,6],
+    [1,1,1,1,1],
+    [2,2,2,],
+    [3,3,3,],
+    [4,4,4,],
+    [5,5,5,],
+    [6,6,6,],
 ]
-
+const single = [1, 5]
 const score = [1,5]
 const playerScore = []
-const farkleDice = [3,4,6]
-
 
 
 // < --------------- funtions ----------------- >
@@ -54,42 +51,80 @@ const rollBtn = document.querySelector('.roll')
 const output = document.querySelector('.table')
 const bankBtn = document.querySelector('.bank')
 const pScore = document.querySelector('.player-score')
+// const numOfDice = document.querySelector('.diceNum')
+const newTurn = document.querySelector('.new-game')
 
-const ranDice = (Math.floor(Math.random() * 6) + 1)
 
-rollBtn.addEventListener('click',diceRoll)
+
+rollBtn.addEventListener('click',game) // to start playing the game
+
+function newRoll() {
+    // score = 0;
+    numTurns = 0;
+    pScore = 0;
+}
  
-function diceRoll () {
-    for (let i=0;i < 5; i++){ // 5 dices were rolled and printed
+function game () {
+    output.innerHTML = " "
+    for (let i = 0;i < 5; i++){ // 5 dices were rolled and printed
         const ranNum = (Math.floor(Math.random() * 6) + 1)
         const val = 9855 + ranNum
-        output.innerHTML += `<span value="${ranNum}">&#${val}</span>`; // value="${ranNum}" is calling the fn ranNum to compare it agian the ${val}.
+        output.innerHTML += `<span class="diceNum" value="${ranNum}">&#${val}</span>`; // value="${ranNum}" is calling the fn ranNum to compare it agian the ${val}.
 
-        if (ranNum.value === farkleDice){
-            console.log(`Farkle`)
-        }
-    }
-
-    
-}
-
-
-bankBtn.addEventListener('click', bankScore)
-function bankScore () { // score need to be adde to score board
-    let sum = 0;
-    if (ranNum === 1){
-        pScore.textContent = sum + 100;
     }
     
-}
 
-// const newTurn = document.getElementById('.new-game')
-// newTurn.addEventListener('click',newGame)
-// function newGame() {
-//     score = 0;
-//     numTurns = 0;
-//     totalScore = 0;
-// }
+    bankBtn.addEventListener('click', bankScore)
+       function bankScore () { // score need to be adde to score board
+       let sum = 0;
+
+
+       if (ranNum === single[0]){
+        pScore.textContent = sum += 100;
+    } else if (ranNum === single[1]){
+        pScore.textContent = sum += 50;
+    } else if (ranNum === 5) {
+        pScore.textContent = sum += 50;
+    } else if (ranNum === typeOfKind[1]) {
+        pScore.textContent = sum += 200;
+    } else if (ranNum === typeOfKind[2]) {
+        pScore.textContent = sum += 300;
+    } else if (ranNum === typeOfKind[3]) {
+        pScore.textContent = sum += 400;
+    } else if (ranNum === typeOfKind[4]) {
+        pScore.textContent = sum += 500;
+    } else if (ranNum === typeOfKind[5]) {
+        pScore.textContent = sum += 600;
+    } else if (ranNum === typeOfKind[0]){
+        pScore.textContent = sum += 1000;
+     } 
+     if (ranNum != single || ranNum != typeOfKind){
+         pScore.textContent = 'FARKLED'
+     }
+    }
+
+    }
+
+
+
+//finding doubles
+    //first sort: you can use any way to sort doesnt matter
+rolls.sort(function(a,b){
+    return (a>b?1:(a<b)?0:-1);
+  });
+  
+  for (var i =0; i < rolls.length; i++) {
+      if (rolls[i] == rolls[i+1]) {
+          doubles++;
+          i++;
+      }
+  }
+  if (doubles>0) log("You rolled " + doubles + " doubles");
+
+
+
+// newTurn.addEventListener('click',newRoll)
+
 
 // const farkle = () => { // lose function, this round of score will go back to 0
 //     console.log(`FARKLE!`)
@@ -109,8 +144,4 @@ function bankScore () { // score need to be adde to score board
 //     }
 // }
 
-
-
-
-// < --------------- functioning ----------------- >
 
