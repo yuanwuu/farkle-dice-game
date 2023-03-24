@@ -44,7 +44,8 @@ const rollBtn = document.querySelector('.roll')
 const output = document.querySelector('.table')
 const bankBtn = document.querySelector('.bank')
 const pScore = document.querySelector('.player-score')
-
+const player = document.querySelector('#player')
+const npgPlayer = document.querySelector('#npg')
 const newTurn = document.querySelector('.new-game')
 // const gameRule = document.querySelector('.rules')
 
@@ -76,30 +77,53 @@ function game () {
     }
 
     if (trackDice[1] === 5){
-        output.innerHTML += `<p>1000</p>`
+        output.innerHTML += `<p class="pt">1000</p>`
     } else if (trackDice[2] === 3){
-        output.innerHTML += `<p>200</p>`
+        output.innerHTML += `<p class="pt">200</p>`
     } else if (trackDice[3] === 3) {
-        output.innerHTML += `<p>300</p>`
+        output.innerHTML += `<p class="pt">300</p>`
     } else if (trackDice [4] === 3) {
-        output.innerHTML += `<p>400</p>`
+        output.innerHTML += `<p class="pt">400</p>`
     } else if (trackDice[5] === 3) {
-        output.innerHTML += `<p>500</p>`
+        output.innerHTML += `<p class="pt">500</p>`
     } else if (trackDice[6] === 3) {
-        output.innerHTML += `<p>600</p>`
+        output.innerHTML += `<p class="pt">600</p>`
     } else if (trackDice[1] === 1){
-        output.innerHTML += `<p>100</p>`
+        output.innerHTML += `<p class="pt">100</p>`
     } else if (trackDice[1] === 2){
-        output.innerHTML += `<p>200</p>`
+        output.innerHTML += `<p class="pt">200</p>`
     } else if (trackDice[1] === 3){
-        output.innerHTML += `<p>300</p>`
+        output.innerHTML += `<p class="pt">300</p>`
     } else if (trackDice[5] === 1){
-        output.innerHTML += `<p>50</p>`    
+        output.innerHTML += `<p class="pt">50</p>`    
     } else if (trackDice[5] === 2){
-        output.innerHTML += `<p>100</p>`
+        output.innerHTML += `<p class="pt">100</p>`
     }
     else { 
         output.innerHTML = `<span>FARKLED</span>`
+
+        function playerTurn() {
+            // let dice = rollDice(6);
+            let score = trackDice;
+            if (score > 0) {
+              updateScore(pScore);
+              if (currentScore >= targetScore) {
+                endGame();
+              }
+            } else {
+              currentScore = 0;
+              switchPlayer();
+            }
+          }
+         
+          function switchPlayer() {
+            if (player === 1) {
+              npgPlayer = 2;
+            } else {
+              player = 1;
+            }
+            document.getElementById("profile").innerHTML = "profile" + currentPlayer + "'s turn";
+          }
     }
     
 
@@ -107,10 +131,12 @@ function game () {
 
 bankBtn.addEventListener('click', bankScore)
 function bankScore () { // score need to be adde to score board
-    let sum = 0;
-    // pScore.innerHTML = sum + 
-    pScore.textContent = 'banked'
-}
+   
+        ptValue = document.querySelector('.pt').innerHTML;
+        let sum = 0
+        sum += ptValue
+} 
+pScore.textContent = 'banked' 
 
 
 function newRoll() {
@@ -127,28 +153,7 @@ function winGame (){
     }
 }
 
-function playerTurn() {
-    let dice = rollDice(6);
-    let score = checkCombination(dice);
-    if (score > 0) {
-      updateScore(pScore);
-      if (currentScore >= targetScore) {
-        endGame();
-      }
-    } else {
-      currentScore = 0;
-      switchPlayer();
-    }
-  }
- 
-  function switchPlayer() {
-    if (currentPlayer === 1) {
-      currentPlayer = 2;
-    } else {
-      currentPlayer = 1;
-    }
-    document.getElementById("profile").innerHTML = "profile" + currentPlayer + "'s turn";
-  }
+
 
 
 // newTurn.addEventListener('click',newRoll)
