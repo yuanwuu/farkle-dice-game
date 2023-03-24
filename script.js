@@ -70,7 +70,7 @@ function game () {
         6: 0 
     }
     
-    for (let die of dice) {
+    for (let die of dice) { // keep track of which dice # and their rolled
         const diceValue = parseInt(die.getAttribute('value'))
         trackDice[diceValue] += 1;
     }
@@ -115,8 +115,16 @@ function bankScore () { // score need to be adde to score board
 
 function newRoll() {
     //score = 0;
-    numTurns = 0;
+    // numTurns = 0;
     pScore = 0;
+}
+
+function winGame (){
+    if (pScore > targetScore){
+        console.log (`FARKLED! YOU WON! `)
+    } else {
+        console.log (`FARKLED! YOU WON! `)
+    }
 }
 
 function playerTurn() {
