@@ -29,11 +29,11 @@
 
 
 // < --------------- arrays ----------------- >
-const winCombo = [1,2,3,4,5,6]
-const rolls = [] 
-const playerScore = []
-const currentScore = []
-const pcScore = []
+// const winCombo = [1,2,3,4,5,6]
+// const rolls = [] 
+let playerScore = []
+// const currentScore = []
+const computerScore = []
 const targetScore = 10000
 // const profile = player1
 
@@ -41,9 +41,10 @@ const targetScore = 10000
 // < --------------- funtions ----------------- >
 
 const rollBtn = document.querySelector('.roll')
-const output = document.querySelector('.table')
+const output = document.querySelector('.table') // the green box - table
 const bankBtn = document.querySelector('.bank')
-const pScore = document.querySelector('.player-score')
+const playerScoreBox = document.querySelector('.player-score')
+const computerScoreBox = document.querySelector('.pc-score')
 const player = document.querySelector('#player')
 const npgPlayer = document.querySelector('#npg')
 const newTurn = document.querySelector('.new-game')
@@ -102,41 +103,58 @@ function game () {
     else { 
         output.innerHTML = `<span>FARKLED</span>`
 
-        function playerTurn() {
-            // let dice = rollDice(6);
-            let score = trackDice;
-            if (score > 0) {
-              updateScore(pScore);
-              if (currentScore >= targetScore) {
-                endGame();
-              }
-            } else {
-              currentScore = 0;
-              switchPlayer();
-            }
-          }
-         
-          function switchPlayer() {
-            if (player === 1) {
-              npgPlayer = 2;
-            } else {
-              player = 1;
-            }
-            document.getElementById("profile").innerHTML = "profile" + currentPlayer + "'s turn";
-          }
+        
     }
     
-
 }
 
-bankBtn.addEventListener('click', bankScore)
-function bankScore () { // score need to be adde to score board
-   
-        ptValue = document.querySelector('.pt').innerHTML;
-        let sum = 0
-        sum += ptValue
+function playerTurn() {
+    // let dice = rollDice(6);
+    let score = trackDice;
+    if (score > 0) {
+      updateScore(playerScore);
+      if (currentScore >= targetScore) {
+        endGame();
+      }
+    } else {
+      currentScore = 0;
+      switchPlayer();
+    }
+  }
+ 
+  function switchPlayer() {
+    if (player === 1) {
+      npgPlayer = 2;
+    } else {
+      player = 1;
+    }
+    document.getElementById("profile").innerHTML = "profile" + currentPlayer + "'s turn";
+  }
+
+
+const farkle = () => { // lose function, this round of score will go back to 0
+    if (player){
+        playerScore === 0;
+        playerScoreBox === 0;
+        switchPlayer();
+    } else if (npgPlayer){
+        switchPlayer();
+    }
+}    
+
+
+    bankBtn.addEventListener('click', bankScore)
+    function bankScore () { // score need to be adde to score board
+
+    ptValue = document.querySelector('.pt').innerHTML; // the pt generate from rolled dice
+    // let sum = 0;
+    // sum += ptValue
+    playerScoreBox.textContent = ptValue 
+    playerScore.push(ptValue)
+    // farkle();
 } 
-pScore.textContent = 'banked' 
+console.log(playerScore)
+
 
 
 function newRoll() {
@@ -147,28 +165,20 @@ function newRoll() {
 
 function winGame (){
     if (pScore > targetScore){
-        console.log (`FARKLED! YOU WON! `)
-    } else {
-        console.log (`FARKLED! YOU WON! `)
+        console.log (`FARKLED! YOU WIN! `)
+    } else if(pcScore > targetScore) {
+        console.log (`FARKLED! YOU WIN! `)
     }
 }
-
-
 
 
 // newTurn.addEventListener('click',newRoll)
 
 
-// const farkle = () => { // lose function, this round of score will go back to 0
-//     console.log(`FARKLE!`)
-// }
 
 // let hotDice = () => { // winning hand, hotDice can roll another turn
 //     if (diceRoll) {
 //         console.log(`roll again or bank score`)
 //     } 
 // }
-
-
-
 
