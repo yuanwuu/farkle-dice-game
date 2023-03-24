@@ -29,7 +29,7 @@
 
 
 // < --------------- arrays ----------------- >
-
+const winCombo = [1,2,3,4,5,6]
 const rolls = [] 
 const playerScore = []
 const currentScore = []
