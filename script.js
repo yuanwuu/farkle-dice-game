@@ -35,6 +35,7 @@
 const playerScoreArr = []
 const computerScore = []
 const targetScore = 10000
+const activePlayer = 1;
 // const profile = player1
 
 
@@ -101,10 +102,15 @@ function game () {
     }
     else { 
         output.innerHTML = `<span>FARKLED</span>`
-        
+        // alert('FARKLED')
     }
     
+    if (output.textContent == "FARKLED"){
+        alert('FARKLED')
+        rollBtn.disabled = true; // disable the roll btn
+    }
 }
+    // rollBtn.disabled = true; // disable the roll btn
 
 // function playerTurn() {
 //     // let dice = rollDice(6);
@@ -121,66 +127,60 @@ function game () {
 // }
  
 
-const farkle = () => { // lose function, this round of score will go back to 0
-    if (playerScoreBox < 0){
-        // playerScore === 0;
-        // playerScoreBox === 0;
-        switchPlayer();
-    } else if (computerScoreBox < 0){
-        switchPlayer();
-    }
-}   
+// const farkle = () => { // lose function, this round of score will go back to 0
+//     if (playerScoreBox < 0){
+//         // playerScore === 0;
+//         // playerScoreBox === 0;
+//         switchPlayer();
+//     } else if (computerScoreBox < 0){
+//         switchPlayer();
+//     }
+// }   
 
-function switchPlayer() {
-    if (player === 1) {
-      npgPlayer = 2;
-    } else {
-      player = 1;
-    }
-    document.getElementById("profile").innerHTML = "profile" + currentPlayer + "'s turn";
-  }
-
-
- 
 
 
 bankBtn.addEventListener('click', bankScore)
 function bankScore () { // score need to be adde to score board
     pointEarned = document.querySelector('.pt').innerHTML; // the pt generate from rolled dice
-    // playerScoreBox.textContent = pointEarned
     playerScoreArr.push(pointEarned)
-    // console.log(playerScoreArr)
+    
 
     let sum = 0;
     for (let i = 0; i < playerScoreArr.length; i++){
         sum += parseInt(playerScoreArr[i])
     }
-    // console.log(sum)
     playerScoreBox.textContent = sum
 
-    if (output.innerText === 'FARKLED'){
-        playerScoreArr = 0;
-        // playerScoreBox = 0;
-        playerScoreBox.textContent = 0;
+    if (sum > targetScore){
+        alert (`FARKLED! YOU WIN! `)
     }
-} 
+
+}
+function timer(seconds, callback) {
+    setTimeout(callback, seconds * 1000);
+  }
+  
+  // Usage: start a 60-second timer
+  timer(60, function() {
+    alert("FARKLED! you've ran out of time");
+    rollBtn.disabled = true;
+    bankBtn.disabled = true;
+  });
+
+
+
+
+
+
 
 
 
 function newRoll() {
-    //score = 0;
-    // numTurns = 0;
     playerScoreBox = 0;
     computerScoreBox = 0;
 }
 
-function winGame (){
-    if (playerScoreBox > targetScore){
-        console.log (`FARKLED! YOU WIN! `)
-    } else if(computerScoreBox > targetScore) {
-        console.log (`FARKLED! YOU WIN! `)
-    }
-}
+
 
 
 // newTurn.addEventListener('click',newRoll)
@@ -192,4 +192,5 @@ function winGame (){
 //         console.log(`roll again or bank score`)
 //     } 
 // }
+
 
