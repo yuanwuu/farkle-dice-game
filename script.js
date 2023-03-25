@@ -104,41 +104,13 @@ function game () {
     }
     else { 
         output.innerHTML = `<span>FARKLED</span>`
-        // alert('FARKLED')
     }
     
     if (output.textContent == "FARKLED"){
         alert('FARKLED')
         rollBtn.disabled = true; // disable the roll btn
     }
-}
-    // rollBtn.disabled = true; // disable the roll btn
-
-// function playerTurn() {
-//     // let dice = rollDice(6);
-//     // let score = trackDice;
-//     if (playerScoreBox < 0) {
-//       updateScore(playerScore);
-//       if (currentScore >= targetScore) {
-//         winGame();
-//       }
-//     } else {
-//       currentScore = 0;
-//       switchPlayer();
-//     }
-// }
- 
-
-// const farkle = () => { // lose function, this round of score will go back to 0
-//     if (playerScoreBox < 0){
-//         // playerScore === 0;
-//         // playerScoreBox === 0;
-//         switchPlayer();
-//     } else if (computerScoreBox < 0){
-//         switchPlayer();
-//     }
-// }   
-
+}  
 
 
 bankBtn.addEventListener('click', bankScore)
@@ -185,26 +157,10 @@ function randomTimer(minSeconds, maxSeconds, callback) {
     rollBtn.disabled = true;
     bankBtn.disabled = true;
 });
-  
-
 
 
 function newRoll() {
     playerScoreBox = 0;
     computerScoreBox = 0;
 }
-
-
-
-
-// newTurn.addEventListener('click',newRoll)
-
-
-
-// let hotDice = () => { // winning hand, hotDice can roll another turn
-//     if (diceRoll) {
-//         console.log(`roll again or bank score`)
-//     } 
-// }
-
 

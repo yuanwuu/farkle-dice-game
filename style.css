@@ -42,13 +42,14 @@ hr {
 
 /* the green table */
 .table { 
-    margin: 10px;
-    width: 400px;
-    height: 350px;
+    margin: 20px;
+    width: 450px;
+    height: 400px;
     background-color: #81B29A;
     /* background-color: #7aa390; */
     border-radius: 10px;
     overflow: hidden;
+
 }
 
 .dices {
@@ -70,12 +71,26 @@ p {
     font-weight: 600;
 }
 
+.game {
+    display: flex;
+    flex-direction: column;
+
+}
+
 button {
     width: 150px;
     height: 50px;
     border-radius: 10px;
     border: none;
 }
+
+.char {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    
+}
+
 .profile {
     width: 150px;
     height: 150px;
