@@ -10,9 +10,9 @@ Farkle, or Farkel, is a dice game similar to or synonymous with 1000/5000/10000,
 ** Play
 Get ready for a thrilling challenge with Timed Farkle! This game puts your skills to the test as you race against the clock to beat your own high score. You don't have to worry about finding a partner to play with because it's just you against the clock!
 
-The rules are simple: you need to reach 10,000 points before the timer runs out. But watch out for the dreaded Farkle! Every time you roll and can't score any points, you'll hear the frustrating sound of "FARKLED". But don't worry, you can always start over and try again.
+The rules are simple: you need to reach 100 - 10,000 (randomly generated) points before the timer runs out. But watch out for the dreaded Farkle! Every time you roll and can't score any points, you'll hear the frustrating sound of "FARKLED". But don't worry, you can always start over and try again.
 
-With only 60 seconds on the clock, you'll have to think fast and make quick decisions to maximize your points. The pressure is on to beat your own score and become the ultimate Timed Farkle champion.
+With only 30-120 seconds(time is randomly generated and secretly running in the back) on the clock, you'll have to think fast and make quick decisions to maximize your points. The pressure is on to beat your own score and become the ultimate Timed Farkle champion.
 
 So gather your dice and get ready to have a blast with Timed Farkle! It's an addictively fun game that will keep you on the edge of your seat and coming back for more. Are you ready to take on the challenge? Let the games begin!
 

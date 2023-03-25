@@ -34,7 +34,8 @@
 // const currentScore = []
 const playerScoreArr = []
 const computerScore = []
-const targetScore = 10000
+// const targetScore = 10000
+const targetScore = Math.floor(Math.random() * (10000 - 100 + 1) + 100);
 const activePlayer = 1;
 // const profile = player1
 
@@ -50,7 +51,8 @@ const computerScoreBox = document.querySelector('.pc-score')
 // const npgPlayer = document.querySelector('#npg')
 const newTurn = document.querySelector('.new-game')
 // const gameRule = document.querySelector('.rules')
-
+const maxPt = document.querySelector('h3')
+maxPt.textContent = targetScore + ` to win`
 
 
 rollBtn.addEventListener('click',game) // to start playing the game
@@ -153,25 +155,37 @@ function bankScore () { // score need to be adde to score board
 
     if (sum > targetScore){
         alert (`FARKLED! YOU WIN! `)
+        rollBtn.disabled = true;
+        bankBtn.disabled = true;
+        randomTimer.disabled = true;
+        
     }
 
 }
-function timer(seconds, callback) {
-    setTimeout(callback, seconds * 1000);
+// function timer(seconds, callback) {
+//     setTimeout(callback, seconds * 1000);
+//   }
+  
+//   // Usage: start a 60-second timer
+// timer(60, function() {
+//     alert("FARKLED! you've ran out of time");
+//     rollBtn.disabled = true;
+//     bankBtn.disabled = true;
+// });
+
+function randomTimer(minSeconds, maxSeconds, callback) {
+    const duration = Math.floor(Math.random() * (maxSeconds - minSeconds + 1) + minSeconds) * 1000;
+    setTimeout(callback, duration);
   }
   
-  // Usage: start a 60-second timer
-  timer(60, function() {
+  // Usage: start a timer with a random duration between 30 and 120 seconds
+  randomTimer(30, 120, function() {
+    // console.log("Timer complete!");
     alert("FARKLED! you've ran out of time");
     rollBtn.disabled = true;
     bankBtn.disabled = true;
-  });
-
-
-
-
-
-
+});
+  
 
 
 
