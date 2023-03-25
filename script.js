@@ -31,8 +31,8 @@
 // < --------------- arrays ----------------- >
 // const winCombo = [1,2,3,4,5,6]
 // const rolls = [] 
-let playerScore = []
 // const currentScore = []
+const playerScoreArr = []
 const computerScore = []
 const targetScore = 10000
 // const profile = player1
@@ -45,15 +45,14 @@ const output = document.querySelector('.table') // the green box - table
 const bankBtn = document.querySelector('.bank')
 const playerScoreBox = document.querySelector('.player-score')
 const computerScoreBox = document.querySelector('.pc-score')
-const player = document.querySelector('#player')
-const npgPlayer = document.querySelector('#npg')
+// const player = document.querySelector('#player')
+// const npgPlayer = document.querySelector('#npg')
 const newTurn = document.querySelector('.new-game')
 // const gameRule = document.querySelector('.rules')
 
 
 
 rollBtn.addEventListener('click',game) // to start playing the game
-
 function game () {
     output.innerHTML = " "
     for (let i = 0;i < 5; i++){ // 5 dices were rolled and printed
@@ -102,27 +101,37 @@ function game () {
     }
     else { 
         output.innerHTML = `<span>FARKLED</span>`
-
         
     }
     
 }
 
-function playerTurn() {
-    // let dice = rollDice(6);
-    let score = trackDice;
-    if (score > 0) {
-      updateScore(playerScore);
-      if (currentScore >= targetScore) {
-        endGame();
-      }
-    } else {
-      currentScore = 0;
-      switchPlayer();
-    }
-  }
+// function playerTurn() {
+//     // let dice = rollDice(6);
+//     // let score = trackDice;
+//     if (playerScoreBox < 0) {
+//       updateScore(playerScore);
+//       if (currentScore >= targetScore) {
+//         winGame();
+//       }
+//     } else {
+//       currentScore = 0;
+//       switchPlayer();
+//     }
+// }
  
-  function switchPlayer() {
+
+const farkle = () => { // lose function, this round of score will go back to 0
+    if (playerScoreBox < 0){
+        // playerScore === 0;
+        // playerScoreBox === 0;
+        switchPlayer();
+    } else if (computerScoreBox < 0){
+        switchPlayer();
+    }
+}   
+
+function switchPlayer() {
     if (player === 1) {
       npgPlayer = 2;
     } else {
@@ -132,41 +141,43 @@ function playerTurn() {
   }
 
 
-const farkle = () => { // lose function, this round of score will go back to 0
-    if (player){
-        playerScore === 0;
-        playerScoreBox === 0;
-        switchPlayer();
-    } else if (npgPlayer){
-        switchPlayer();
+ 
+
+
+bankBtn.addEventListener('click', bankScore)
+function bankScore () { // score need to be adde to score board
+    pointEarned = document.querySelector('.pt').innerHTML; // the pt generate from rolled dice
+    // playerScoreBox.textContent = pointEarned
+    playerScoreArr.push(pointEarned)
+    // console.log(playerScoreArr)
+
+    let sum = 0;
+    for (let i = 0; i < playerScoreArr.length; i++){
+        sum += parseInt(playerScoreArr[i])
     }
-}    
+    // console.log(sum)
+    playerScoreBox.textContent = sum
 
-
-    bankBtn.addEventListener('click', bankScore)
-    function bankScore () { // score need to be adde to score board
-
-    ptValue = document.querySelector('.pt').innerHTML; // the pt generate from rolled dice
-    // let sum = 0;
-    // sum += ptValue
-    playerScoreBox.textContent = ptValue 
-    playerScore.push(ptValue)
-    // farkle();
+    if (output.innerText === 'FARKLED'){
+        playerScoreArr = 0;
+        // playerScoreBox = 0;
+        playerScoreBox.textContent = 0;
+    }
 } 
-console.log(playerScore)
 
 
 
 function newRoll() {
     //score = 0;
     // numTurns = 0;
-    pScore = 0;
+    playerScoreBox = 0;
+    computerScoreBox = 0;
 }
 
 function winGame (){
-    if (pScore > targetScore){
+    if (playerScoreBox > targetScore){
         console.log (`FARKLED! YOU WIN! `)
-    } else if(pcScore > targetScore) {
+    } else if(computerScoreBox > targetScore) {
         console.log (`FARKLED! YOU WIN! `)
     }
 }
